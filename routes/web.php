@@ -14,23 +14,8 @@ use App\Post;
 |
 */
 
-Route::get('/', function () {
-    // $posts = \DB::table('posts')->get();
-    $posts = Post::all();
-    return view('posts', compact('posts'));
-});
+Route::get('/posts', 'PostsController@index');
 
-Route::get('/posts', function () {
-    $posts = Post::all();
-    return view('posts', compact('posts'));
-});
+Route::get('/', 'PostsController@index');
 
-Route::get('/posts/{id}', function ($id) {
-    $post = Post::findOrFail($id);
-    if (!$post) {
-        return view('posts');
-    }
-    $title = $post->title;
-    $body = $post->body;
-    return view('post', compact('title', 'body'));
-})->name('singlePost');
+Route::get('/posts/{id}', 'PostsController@show')->name('singlePost');;
