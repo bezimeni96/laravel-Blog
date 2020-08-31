@@ -16,6 +16,6 @@ use App\Post;
 
 Route::get('/posts', 'PostsController@index');
 
-Route::get('/', 'PostsController@index');
+// Route::get('/', 'PostsController@index');
 
 Route::get('/posts/{id}', 'PostsController@show')->name('singlePost');;

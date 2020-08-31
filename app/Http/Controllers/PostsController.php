@@ -15,7 +15,7 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Post::where('is_published', 1)->get();
-        return view('posts', compact('posts'));
+        return view('posts.all', compact('posts'));
     }
 
     /**
@@ -50,7 +50,7 @@ class PostsController extends Controller
         $post = Post::findOrFail($id);
         $title = $post->title;
         $body = $post->body;
-        return view('post', compact('title', 'body'));
+        return view('posts.single', compact('title', 'body'));
     }
 
     /**
