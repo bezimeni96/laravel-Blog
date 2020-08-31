@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreatePostRequest;
 use App\Post;
+use App\Comment;
 
 class PostsController extends Controller
 {
@@ -16,6 +17,7 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Post::where('is_published', 1)->get();
+
         return view('posts.all', compact('posts'));
     }
 
@@ -64,7 +66,11 @@ class PostsController extends Controller
         $post = Post::findOrFail($id);
         $title = $post->title;
         $body = $post->body;
-        return view('posts.single', compact('title', 'body'));
+
+        // $comments = Comment::where('post_id', $id)->get();
+        $comments = $post->comments;
+
+        return view('posts.single', compact('title', 'body', 'comments'));
     }
 
     /**
