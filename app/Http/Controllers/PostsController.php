@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CreatePostRequest;
 use App\Post;
 
 class PostsController extends Controller
@@ -25,7 +26,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -34,9 +35,22 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreatePostRequest $request)
     {
-        //
+        // $data = $request->only(['title', 'body', 'is_published']);
+        $data = $request->validate();
+
+        // $newPost = new Post;
+        // $newPost->title = $data['title'];
+        // $newPost->body = $data['body'];
+        // $newPost->is_published = $request->get('is_published', false);
+
+        $newPost = Post::create($data);
+        $newPost->save();
+
+
+        // return $this->index();
+        return redirect('/posts'); //saljemo link ka kojem treba da ide ne fajl putanju (posts.all)!
     }
 
     /**
