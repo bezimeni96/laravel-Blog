@@ -71,7 +71,7 @@ class PostsController extends Controller
         // $comments = Comment::where('post_id', $id)->get();
         $comments = $post->comments;
 
-        return view('posts.single', compact('title', 'body', 'comments'));
+        return view('posts.single', compact('post', 'comments'));
     }
 
     /**

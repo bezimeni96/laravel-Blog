@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateCommentRequest;
+use App\Comment;
 
-class CommentController extends Controller
+class CommentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +23,7 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, int $id)
     {
         //
     }
@@ -32,9 +34,22 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCommentRequest $request, $id)
     {
-        //
+        $data = $request->validated();
+
+        $comment = Comment::create([
+            'body' => $data['comment'],
+            'post_id' => $id
+        ]);
+            
+        // $comment = new Comment;
+        // $comment->body = $data['comment'];
+        // $comment->post_id = $id;
+
+        $comment->save();
+
+        return redirect('posts/'.$id);
     }
 
     /**

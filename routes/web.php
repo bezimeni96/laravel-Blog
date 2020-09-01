@@ -26,3 +26,5 @@ Route::post('/posts', 'PostsController@store');
 Route::get('/posts/{id}', 'PostsController@show')
     ->name('singlePost');
 
+Route::post('posts/{id}/comments', 'CommentsController@store');
+
