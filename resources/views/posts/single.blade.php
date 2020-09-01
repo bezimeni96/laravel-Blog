@@ -6,8 +6,9 @@
     <h1>{{$title}}</h1>
     <p>{{$body}}</p>
     <hr>
+    <h3>Comments</h3>
     @foreach($comments as $comment)
-        <div>
+        <div class="alert alert-primary">
             {{$comment->body}}
         </div>
     @endforeach

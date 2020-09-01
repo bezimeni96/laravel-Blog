@@ -4,6 +4,7 @@
 
 
 @section('content')
+    <h2>Create post:</h2>
     <form method="POST" action="/posts">
         @csrf
         <div class="form-group">
