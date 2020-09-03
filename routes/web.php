@@ -28,3 +28,6 @@ Route::get('/posts/{id}', 'PostsController@show')
 
 Route::post('posts/{id}/comments', 'CommentsController@store');
 
+Route::get('/register', 'AuthController@getRegisterForm');
+
+Route::post('/users', 'AuthController@register');
